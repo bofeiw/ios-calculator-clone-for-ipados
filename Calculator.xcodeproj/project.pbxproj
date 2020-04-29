@@ -15,6 +15,9 @@
 		14B61F7B2454712500FDC5A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14B61F792454712500FDC5A2 /* LaunchScreen.storyboard */; };
 		14B61F862454712500FDC5A2 /* CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B61F852454712500FDC5A2 /* CalculatorTests.swift */; };
 		14B61F912454712500FDC5A2 /* CalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B61F902454712500FDC5A2 /* CalculatorUITests.swift */; };
+		14BF4D472459562B0091F8F7 /* CalculatorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BF4D462459562B0091F8F7 /* CalculatorButton.swift */; };
+		14BF4D49245957EE0091F8F7 /* DisplayArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BF4D48245957EE0091F8F7 /* DisplayArea.swift */; };
+		14BF4D4B245958020091F8F7 /* ControlPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BF4D4A245958020091F8F7 /* ControlPanel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		14B61F8C2454712500FDC5A2 /* CalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14B61F902454712500FDC5A2 /* CalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorUITests.swift; sourceTree = "<group>"; };
 		14B61F922454712500FDC5A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14BF4D462459562B0091F8F7 /* CalculatorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButton.swift; sourceTree = "<group>"; };
+		14BF4D48245957EE0091F8F7 /* DisplayArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayArea.swift; sourceTree = "<group>"; };
+		14BF4D4A245958020091F8F7 /* ControlPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,9 @@
 				14B61F792454712500FDC5A2 /* LaunchScreen.storyboard */,
 				14B61F7C2454712500FDC5A2 /* Info.plist */,
 				14B61F762454712500FDC5A2 /* Preview Content */,
+				14BF4D48245957EE0091F8F7 /* DisplayArea.swift */,
+				14BF4D4A245958020091F8F7 /* ControlPanel.swift */,
+				14BF4D462459562B0091F8F7 /* CalculatorButton.swift */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";
@@ -152,6 +161,8 @@
 			dependencies = (
 			);
 			name = Calculator;
+			packageProductDependencies = (
+			);
 			productName = Calculator;
 			productReference = 14B61F6B2454712300FDC5A2 /* Calculator.app */;
 			productType = "com.apple.product-type.application";
@@ -224,6 +235,8 @@
 				Base,
 			);
 			mainGroup = 14B61F622454712300FDC5A2;
+			packageReferences = (
+			);
 			productRefGroup = 14B61F6C2454712300FDC5A2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -267,9 +280,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14BF4D4B245958020091F8F7 /* ControlPanel.swift in Sources */,
 				14B61F6F2454712300FDC5A2 /* AppDelegate.swift in Sources */,
 				14B61F712454712300FDC5A2 /* SceneDelegate.swift in Sources */,
 				14B61F732454712300FDC5A2 /* ContentView.swift in Sources */,
+				14BF4D49245957EE0091F8F7 /* DisplayArea.swift in Sources */,
+				14BF4D472459562B0091F8F7 /* CalculatorButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +382,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -420,7 +436,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -436,6 +452,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Calculator/Preview Content\"";
+				DEVELOPMENT_TEAM = 87K4ZVCTRA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Calculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -445,7 +462,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = bofei.Calculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -455,6 +472,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Calculator/Preview Content\"";
+				DEVELOPMENT_TEAM = 87K4ZVCTRA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Calculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -464,7 +482,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = bofei.Calculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

@@ -8,9 +8,28 @@
 
 import SwiftUI
 
+struct CalculatorView: View {    
+    var displayArea = DisplayArea()
+    var controlPanel = ControlPanel()
+    
+    var body: some View {
+        VStack(alignment: .trailing, spacing: 30.0){
+            Spacer()
+            Spacer()
+            displayArea.padding(.trailing)
+            controlPanel.padding(.bottom)
+            Spacer()
+        }
+    }
+}
+
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        CalculatorView()
+    }
+    
+    static func onCalculateButtonClick() {
+        print("calculate clicked")
     }
 }
 
