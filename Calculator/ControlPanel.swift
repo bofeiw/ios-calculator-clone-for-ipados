@@ -1,6 +1,7 @@
 //
 //  ControlPanel.swift
 //  Calculator
+//  Displays all control buttons including numbers and operators
 //
 //  Created by Bofei Wang on 29/4/20.
 //  Copyright © 2020 bofei. All rights reserved.
@@ -8,10 +9,11 @@
 
 import SwiftUI
 
+// the size and gap of buttons, to be calculated in run time based on screen size
 var buttonGapSize: CGFloat = 0
 var buttonSize: CGFloat = 0
 
-
+// the strategy to calculate the size of buttons, is to find the shortest side of the screen (height or width) and divide the total screen length by 7 (5 row of buttons + 2 rows of spacing)
 func calculateButtonSizes() {
     buttonGapSize =
         (UIScreen.main.bounds.height > UIScreen.main.bounds.width) ?
@@ -26,6 +28,7 @@ func calculateButtonSizes() {
     print(buttonSize)
 }
 
+// add a initialiser by hex color
 // https://stackoverflow.com/a/56894458/12208834
 extension Color {
     init(hex: Int, alpha: Double = 1) {
@@ -52,6 +55,7 @@ struct ControlPanel: View {
     private let buttonBlackFG = Color(.black)
     
     var body: some View {
+        // here are a list of 5 rows of buttons, each row of button includes the specific buttons, and defines their symbol, colors and all of its properties
         VStack(spacing: buttonGapSize) {
             HStack(spacing: buttonGapSize) {
                 CalculatorButton(symbolText: "AC", backgroundColor: buttonGrayBG, foregroundColor: buttonBlackFG)
@@ -86,6 +90,7 @@ struct ControlPanel: View {
     }
     
     init() {
+        // calculate the button size on init
         calculateButtonSizes()
     }  
 }

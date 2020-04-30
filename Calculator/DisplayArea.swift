@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+// display area displays current result
 struct DisplayArea: View {
     @State var currentDisplay = "0"
     

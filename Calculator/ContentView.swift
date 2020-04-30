@@ -8,6 +8,8 @@
 
 import SwiftUI
 
+// calculator view splits to two main areas, display area at the top and control pannel at the bottom
+// there are 2 units of space above the calculator and 1 unit of space below
 struct CalculatorView: View {    
     var displayArea = DisplayArea()
     var controlPanel = ControlPanel()
@@ -23,6 +25,7 @@ struct CalculatorView: View {
     }
 }
 
+// this is the root view. it includes calculator
 struct ContentView: View {
     var body: some View {
         CalculatorView()
