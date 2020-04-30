@@ -8,19 +8,30 @@
 
 import SwiftUI
 
-enum TouchState {
-    case none, began, moved, ended
-    var name: String {
-        return "\(self)"
-    }
+// All possible button types 
+enum ButtonType {
+    case Plus
+    case Minus
+    case Multiply
+    case Divide
+    case Number0
+    case Number1
+    case Number2
+    case Number3
+    case Number4
+    case Number5
+    case Number6
+    case Number7
+    case Number8
+    case Number9
+    case Dot
+    case Calculate
+    case AC
+    case PlusMinus
+    case Percentage
 }
 
 struct CalculatorButton: View {
-    enum CalculatorButtonType {
-        case Plus
-        case Minus
-        case Multiply
-    }
     
     // optionally to have an symbol image. if the image is given, use the image. otherwise a symbol text must be given
     var image: Image?
@@ -39,16 +50,41 @@ struct CalculatorButton: View {
     // e.g. if the span is 2, it spans to 2 units of button widths. an example is the "0" button of the calculator that spans 2 units.
     var horizontalSpan: CGFloat = 1.0
     
+    // the operator type of the button instance
+    let operatorType: ButtonType
+    
+    // the selected operator type is controled in ControlPanel
+    @Binding var selectedOperator: ButtonType?
+    
+    // button on click callback
+    var callback: ((ButtonType) -> Void)?
+    
+    // tracing if the button is currently on hovering
     @State private var isTouching = false
     
-    var spannedWidth: CGFloat {
+    // computed spanned width for internal use
+    private var spannedWidth: CGFloat {
         get {
             buttonSize * horizontalSpan + (horizontalSpan - 1) * buttonGapSize
         }
     }
     
-    
-    
+    // computed bool that indicates if BG/FG color should be inverted
+    // if type is operator and is selected then it should invert
+    private var shouldInvertColor: Bool {
+        get {
+            switch operatorType {
+            case .Divide, .Multiply, .Plus, .Minus:
+                if selectedOperator == operatorType {
+                    return true
+                } else {
+                    return false
+                }
+            default:
+                return false
+            }
+        }
+    }
     
     var body: some View {
         
@@ -58,8 +94,8 @@ struct CalculatorButton: View {
             Text("")
                 .cornerRadius(buttonSize / 2)
                 .frame(width: spannedWidth, height: buttonSize)
-                .background(self.isTouching ? (BGHover ?? BG) : BG)
-                .animation(self.isTouching ? nil : .spring())
+                .background(shouldInvertColor ? FG : self.isTouching ? (BGHover ?? BG) : BG)
+                .animation(shouldInvertColor ? .spring() : self.isTouching ? nil : .spring())
                 .cornerRadius(buttonSize / 2)
                 .gesture(
                     DragGesture(minimumDistance: 0)
@@ -86,7 +122,8 @@ struct CalculatorButton: View {
                         .scaledToFit()
                         .frame(width: buttonSize / 3, height: buttonSize / 3)
                         .padding(buttonSize / 3)
-                        .foregroundColor(FG)
+                        .foregroundColor(shouldInvertColor ? BG : FG)
+                        .animation(.spring())
                     
                 } else {
                     Text(text)
@@ -94,24 +131,28 @@ struct CalculatorButton: View {
                         .font(.system(size: 500))
                         .minimumScaleFactor(0.01)
                         .padding(buttonSize / 4)
-                        .foregroundColor(FG)
+                        .foregroundColor(shouldInvertColor ? BG : FG)
+                        .animation(.spring())
                 }
             }
         }
     }
     
+    // figure moves out of button display area
     private func onMoveIntoView() {
         self.isTouching = true
-        print("move in ")
     }
     
+    // figure moves into button display area
     private func onMoveOutView() {
         self.isTouching = false
-        print("move out ")
     }
     
+    // move ended, if figure is inside button display area, call the callback function. Reset is touching to false
     private func onMoveEnd() {
-        print("move end")
+        if self.isTouching {
+            self.callback?(self.operatorType)
+        }
         self.isTouching = false
     }
 }
