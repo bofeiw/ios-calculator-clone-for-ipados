@@ -10,23 +10,13 @@
 import SwiftUI
 
 // the size and gap of buttons, to be calculated in run time based on screen size
-var buttonGapSize: CGFloat = 0
-var buttonSize: CGFloat = 0
-
 // the strategy to calculate the size of buttons, is to find the shortest side of the screen (height or width) and divide the total screen length by 7 (5 row of buttons + 2 rows of spacing)
-func calculateButtonSizes() {
-    buttonGapSize =
-        (UIScreen.main.bounds.height > UIScreen.main.bounds.width) ?
-            (UIScreen.main.bounds.width / 50) :
-        (UIScreen.main.bounds.height / 50)
-    
-    buttonSize =
-        (UIScreen.main.bounds.height > UIScreen.main.bounds.width) ?
-            ((UIScreen.main.bounds.width - 4 * buttonGapSize) / 7):
-        ((UIScreen.main.bounds.height - 4 * buttonGapSize) / 7)
-    
-    print(buttonSize)
-}
+var buttonGapSize: CGFloat = (UIScreen.main.bounds.height > UIScreen.main.bounds.width) ?
+    (UIScreen.main.bounds.width / 50) :
+    (UIScreen.main.bounds.height / 50)
+var buttonSize: CGFloat = (UIScreen.main.bounds.height > UIScreen.main.bounds.width) ?
+    ((UIScreen.main.bounds.width - 4 * buttonGapSize) / 7):
+    ((UIScreen.main.bounds.height - 4 * buttonGapSize) / 7)
 
 // add a initialiser by hex color
 // https://stackoverflow.com/a/56894458/12208834
@@ -48,6 +38,8 @@ extension Color {
 }
 
 struct ControlPanel: View {
+    var clickCallback: ((ButtonType) -> Void)?
+    
     // colours
     private let BGGray = Color(hex: 0xa5a5a5)
     private let BGHoverGray = Color(hex: 0xd9d9d9)
@@ -65,13 +57,14 @@ struct ControlPanel: View {
     @State private var selectedOperator: ButtonType? = nil
     
     // callback function for buttons on click
-    func onButtonClick(_ buttonType: ButtonType) -> Void {
+    private func onButtonClick(_ buttonType: ButtonType) -> Void {
         switch buttonType {
         case .Divide, .Multiply, .Minus, .Plus:
             self.selectedOperator = buttonType
         default:
-            print("number")
+            break
         }
+        self.clickCallback?(buttonType)
     }
     
     var body: some View {
@@ -107,11 +100,6 @@ struct ControlPanel: View {
                 CalculatorButton(image: Image(systemName: "equal"), BG: BGOrange, FG: FGWhite, BGHover: BGHoverOrange, operatorType: ButtonType.Calculate, selectedOperator: $selectedOperator, callback: onButtonClick)
             }
         }
-    }
-    
-    init() {
-        // calculate the button size on init
-        calculateButtonSizes()
     }
 }
 

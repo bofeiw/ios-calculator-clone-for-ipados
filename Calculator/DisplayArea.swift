@@ -8,9 +8,17 @@
 
 import SwiftUI
 
+enum DisplayAreaEvent {
+    case Delete
+    case CopyToClipBoard
+}
+
 // display area displays current result
 struct DisplayArea: View {
-    @State var currentDisplay = "0"
+    var eventCallback: ((DisplayAreaEvent) -> Void)?
+    
+    // bindind display text from calculator
+    @Binding var currentDisplay: String
     
     var body: some View {
         Text(currentDisplay)
