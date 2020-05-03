@@ -1,8 +1,12 @@
 #  An clone of the built-in iOS Calculator APP for iPadOS, using SwiftUI
 
-## Yes, it looks exactly the same as the iOS built-in Calculator
+Yes, it looks exactly the same as the iOS built-in Calculator
 
 The  UI is implemented by mimicing the iOS Calculator, by inspecting its colours and button positions. On iPad, it looks like an enlarged version of the iOS Calculator
+
+![preview](Designs/iPad12.9PortraitLanding.png)
+![preview](Designs/iPad12.9LandscapeLanding.png)
+![preview](Designs/iPad12.9LandscapeCopyPaste.png)
 
 ## Why another duplicate of the calculator project?
 
