@@ -1,3 +1,5 @@
+![preview](Designs/1024.png)
+
 #  An clone of the built-in iOS Calculator APP for iPadOS, using SwiftUI
 
 Yes, it looks exactly the same as the iOS built-in Calculator
