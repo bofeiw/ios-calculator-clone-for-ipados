@@ -16,7 +16,8 @@ struct CalculatorModel {
     private var isNegative = false
     private var lastInput: Double = 0
     private let maxInput = 9
-    private let formatterBreakPoint = 999999999.9
+    private let formatterUpperBreakPoint = 999999999.9
+    private let formatterLowerBreakPoint = 0.000000001
     private let decimalFormatter = NumberFormatter()
     private let scientificFormatter = NumberFormatter()
     
@@ -35,6 +36,14 @@ struct CalculatorModel {
                 return "Error"
             } else if !inputs.isEmpty {
                 var parsedInputs = Double(inputs) ?? 0
+                guard parsedInputs != 0 else {
+                    // e.g. -0.00003
+                    if isNegative {
+                        return "-" + inputs
+                    } else {
+                        return inputs
+                    }
+                }
                 if isNegative {
                     parsedInputs.negate()
                 }
@@ -46,7 +55,7 @@ struct CalculatorModel {
             } else if inputs.isEmpty && isNegative {
                 return "-0"
             } else if ans != 0 {
-                if ans < formatterBreakPoint {
+                if abs(ans) < formatterUpperBreakPoint && abs(ans) > formatterLowerBreakPoint {
                     return decimalFormatter.string(from: NSNumber(value: ans)) ?? "0"
                 } else {
                     return scientificFormatter.string(from: NSNumber(value: ans)) ?? "0"
@@ -195,7 +204,7 @@ struct CalculatorModel {
         guard parsedContent != nil else {
             return
         }
-        if parsedContent! > formatterBreakPoint {
+        if abs(parsedContent!) > formatterUpperBreakPoint || abs(parsedContent!) < formatterLowerBreakPoint {
             ans = parsedContent!
         } else {
             if parsedContent! < 0 {

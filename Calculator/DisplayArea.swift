@@ -29,6 +29,8 @@ struct DisplayArea: View {
             if currentDisplay.count > 11 {
                 return 70
             } else if currentDisplay.count > 9 {
+                return 75
+            } else if currentDisplay.count > 8 {
                 return 80
             } else {
                 return 100
@@ -54,7 +56,7 @@ struct DisplayArea: View {
                 }
         }
         .id(UUID.init())
-        .frame(minHeight: 150)
+        .frame(minHeight: 120)
     }
 }
 
