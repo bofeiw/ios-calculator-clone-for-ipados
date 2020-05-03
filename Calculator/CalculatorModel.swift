@@ -34,7 +34,11 @@ struct CalculatorModel {
             if isError && inputs.isEmpty {
                 return "Error"
             } else if !inputs.isEmpty {
-                var formattedInputs = decimalFormatter.string(from: NSNumber(value: Double(inputs) ?? 0)) ?? "0"
+                var parsedInputs = Double(inputs) ?? 0
+                if isNegative {
+                    parsedInputs.negate()
+                }
+                var formattedInputs = decimalFormatter.string(from: NSNumber(value: parsedInputs)) ?? "0"
                 if inputs.last == "." {
                     formattedInputs += "."
                 }
@@ -114,7 +118,7 @@ struct CalculatorModel {
         print("calculate")
         var inputNumber = Double(inputs) ?? 0
         if isNegative {
-            inputNumber = -inputNumber
+            inputNumber.negate()
         }
         
         isNegative = false
@@ -163,7 +167,7 @@ struct CalculatorModel {
         print("percentage")
         lastInput = Double(inputs) ?? 0
         if isNegative {
-            lastInput = -lastInput
+            lastInput.negate()
         }
         
         isNegative = false
@@ -182,8 +186,25 @@ struct CalculatorModel {
         guard !inputs.isEmpty else {
             return
         }
-        inputs.popLast()
+        _ = inputs.popLast()
         print(inputs)
+    }
+    
+    mutating func onPaste(_ content: String) {
+        var parsedContent: Double? = Double(content)
+        guard parsedContent != nil else {
+            return
+        }
+        if parsedContent! > formatterBreakPoint {
+            ans = parsedContent!
+        } else {
+            if parsedContent! < 0 {
+                isNegative = true
+                parsedContent?.negate()
+            }
+            inputs = String(parsedContent!).trimmingCharacters(in: CharacterSet.init(charactersIn: ".0"))
+        }
+        isError = false
     }
     
     private mutating func recordAns() {

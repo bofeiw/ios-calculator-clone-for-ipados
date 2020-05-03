@@ -17,9 +17,23 @@ struct CalculatorView: View {
     
     @State private var isDraggingHandled = false
     
+    @State private var isPresentingPopover = true
+    
     // callback functoin when user interacts with display area
     private func onDisplayAreaClick(_ event: DisplayAreaEvent) -> Void {
-        print(event)
+        switch event {
+        case .CopyToClipBoard:
+            UIPasteboard.general.string = currentDisplay
+        case .Paste:
+            let content = UIPasteboard.general.string
+            guard content != nil else {
+                return
+            }
+            calculator.onPaste(content!)
+            currentDisplay = calculator.displayedValue
+        default:
+            break
+        }
     }
     
     private func onDelete() {
@@ -70,29 +84,27 @@ struct CalculatorView: View {
         VStack(alignment: .trailing, spacing: 30.0){
             Spacer()
             Spacer()
-            HStack() {
-                Spacer()
-                DisplayArea(eventCallback: onDisplayAreaClick, currentDisplay: $currentDisplay)
-            }
-            .padding(.trailing)
-            .frame(maxWidth: controlPanelWidth)
-            .contentShape(Rectangle())
-            .gesture(
-                DragGesture(minimumDistance: buttonSize)
-                    .onChanged({ value in
-                        print(1)
-                        guard !self.isDraggingHandled else {
-                            return
-                        }
-                        guard abs(value.location.y - value.startLocation.y) < buttonSize else {
-                            return
-                        }
-                        self.isDraggingHandled = true
-                        self.onDelete()
-                    })
-                    .onEnded({ _ in
-                        self.isDraggingHandled = false
-                    })
+            DisplayArea(eventCallback: onDisplayAreaClick, currentDisplay: $currentDisplay, isPresentingPopover: $isPresentingPopover)
+                .frame(maxWidth: controlPanelWidth, alignment: .trailing)
+                .padding(.trailing)
+                .frame(maxWidth: controlPanelWidth)
+                .contentShape(Rectangle())
+                .gesture(
+                    DragGesture(minimumDistance: buttonSize)
+                        .onChanged({ value in
+                            print(1)
+                            guard !self.isDraggingHandled else {
+                                return
+                            }
+                            guard abs(value.location.y - value.startLocation.y) < buttonSize else {
+                                return
+                            }
+                            self.isDraggingHandled = true
+                            self.onDelete()
+                        })
+                        .onEnded({ _ in
+                            self.isDraggingHandled = false
+                        })                     
             )
             ControlPanel(clickCallback: onControlPanelClick).padding(.bottom)
             Spacer()
