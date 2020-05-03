@@ -61,6 +61,8 @@ struct ControlPanel: View {
         switch buttonType {
         case .Divide, .Multiply, .Minus, .Plus:
             self.selectedOperator = buttonType
+        case .Calculate:
+            self.selectedOperator = nil
         default:
             break
         }

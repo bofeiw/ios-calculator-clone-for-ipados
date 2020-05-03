@@ -52,7 +52,7 @@ struct CalculatorView: View {
         case .AC:
             calculator.onAC()
         case .PlusMinus:
-            calculator.onAC()
+            calculator.onPlusMinus()
         case .Percentage:
             calculator.onPercentage()
         }
