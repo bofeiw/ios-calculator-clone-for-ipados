@@ -39,7 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		14B61F6B2454712300FDC5A2 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		14B61F6B2454712300FDC5A2 /* Calculator Native.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calculator Native.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14B61F6E2454712300FDC5A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14B61F702454712300FDC5A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		14B61F722454712300FDC5A2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 		14B61F6C2454712300FDC5A2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				14B61F6B2454712300FDC5A2 /* Calculator.app */,
+				14B61F6B2454712300FDC5A2 /* Calculator Native.app */,
 				14B61F812454712500FDC5A2 /* CalculatorTests.xctest */,
 				14B61F8C2454712500FDC5A2 /* CalculatorUITests.xctest */,
 			);
@@ -169,7 +169,7 @@
 			packageProductDependencies = (
 			);
 			productName = Calculator;
-			productReference = 14B61F6B2454712300FDC5A2 /* Calculator.app */;
+			productReference = 14B61F6B2454712300FDC5A2 /* Calculator Native.app */;
 			productType = "com.apple.product-type.application";
 		};
 		14B61F802454712500FDC5A2 /* CalculatorTests */ = {
@@ -466,7 +466,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = bofei.Calculator;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Calculator Native";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -486,7 +486,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = bofei.Calculator;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Calculator Native";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
