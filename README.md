@@ -36,5 +36,5 @@ Feel free to create a PR if that's the best way to solve a problem! And then add
 
 - Support light color scheme
 - Add advanced calculation as the landscape mode of the iOS Calculator
-- Implement the calculation functionality
+- Add App Widget
 
