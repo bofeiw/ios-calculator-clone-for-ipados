@@ -177,6 +177,15 @@ struct CalculatorModel {
         }
     }
     
+    mutating func onDelete() {
+        print("onDelete")
+        guard !inputs.isEmpty else {
+            return
+        }
+        inputs.popLast()
+        print(inputs)
+    }
+    
     private mutating func recordAns() {
         ans = Double(inputs) ?? 0
         if isNegative {

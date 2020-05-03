@@ -18,6 +18,8 @@ var buttonSize: CGFloat = (UIScreen.main.bounds.height > UIScreen.main.bounds.wi
     ((UIScreen.main.bounds.width - 4 * buttonGapSize) / 7):
     ((UIScreen.main.bounds.height - 4 * buttonGapSize) / 7)
 
+var controlPanelWidth = 4 * buttonSize + 3 * buttonGapSize
+
 // add a initialiser by hex color
 // https://stackoverflow.com/a/56894458/12208834
 extension Color {

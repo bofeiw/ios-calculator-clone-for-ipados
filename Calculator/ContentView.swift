@@ -15,9 +15,16 @@ struct CalculatorView: View {
     
     @State private var calculator = CalculatorModel()
     
+    @State private var isDraggingHandled = false
+    
     // callback functoin when user interacts with display area
     private func onDisplayAreaClick(_ event: DisplayAreaEvent) -> Void {
         print(event)
+    }
+    
+    private func onDelete() {
+        calculator.onDelete()
+        currentDisplay = calculator.displayedValue
     }
     
     // callback function when user clicks a button in control panel
@@ -63,7 +70,30 @@ struct CalculatorView: View {
         VStack(alignment: .trailing, spacing: 30.0){
             Spacer()
             Spacer()
-            DisplayArea(eventCallback: onDisplayAreaClick, currentDisplay: $currentDisplay).padding(.trailing)
+            HStack() {
+                Spacer()
+                DisplayArea(eventCallback: onDisplayAreaClick, currentDisplay: $currentDisplay)
+            }
+            .padding(.trailing)
+            .frame(maxWidth: controlPanelWidth)
+            .contentShape(Rectangle())
+            .gesture(
+                DragGesture(minimumDistance: buttonSize)
+                    .onChanged({ value in
+                        print(1)
+                        guard !self.isDraggingHandled else {
+                            return
+                        }
+                        guard abs(value.location.y - value.startLocation.y) < buttonSize else {
+                            return
+                        }
+                        self.isDraggingHandled = true
+                        self.onDelete()
+                    })
+                    .onEnded({ _ in
+                        self.isDraggingHandled = false
+                    })
+            )
             ControlPanel(clickCallback: onControlPanelClick).padding(.bottom)
             Spacer()
         }
