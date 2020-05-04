@@ -45,3 +45,4 @@ Feel free to create a PR if that's the best way to solve a problem! And then add
 - Add Siri support
 - Add home screen popover
 - Follow system color scheme
+- Add iPadOS cursor support
