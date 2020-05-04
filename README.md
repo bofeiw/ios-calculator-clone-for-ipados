@@ -40,8 +40,8 @@ Feel free to create a PR if that's the best way to solve a problem! And then add
 
 ## TODO
 
-- Support light color scheme
 - Add advanced calculation as the landscape mode of the iOS Calculator
 - Add App Widget
 - Add Siri support
 - Add home screen popover
+- Follow system color scheme
