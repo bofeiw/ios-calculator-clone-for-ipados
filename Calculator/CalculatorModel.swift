@@ -133,10 +133,8 @@ struct CalculatorModel {
         isNegative = false
         inputs.removeAll()
         
-        if inputNumber != 0 {
-            lastInput = inputNumber
-        }
-        
+        lastInput = inputNumber
+
         guard !isError else {
             return
         }
