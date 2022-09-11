@@ -75,9 +75,7 @@ struct CalculatorModel {
     mutating func onTypeNumber(_ number: Int) {
         print("Input number", number)
         if inputs.isEmpty {
-            if number != 0 {
-                inputs.append(String(number))
-            }
+            inputs.append(String(number))
         } else if inputs.count >= maxInput {
             // discard any additional inputs if the pool is full
             // allow one digit if the last input is a dot
