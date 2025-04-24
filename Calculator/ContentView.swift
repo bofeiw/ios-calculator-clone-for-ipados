@@ -81,33 +81,36 @@ struct CalculatorView: View {
     }
     
     var body: some View {
-        VStack(alignment: .trailing, spacing: 30.0){
-            Spacer()
-            Spacer()
-            DisplayArea(eventCallback: onDisplayAreaClick, currentDisplay: $currentDisplay, isPresentingPopover: $isPresentingPopover)
-                .frame(maxWidth: controlPanelWidth, alignment: .trailing)
-                .padding(.trailing)
-                .frame(maxWidth: controlPanelWidth)
-                .contentShape(Rectangle())
-                .gesture(
-                    DragGesture(minimumDistance: buttonSize)
-                        .onChanged({ value in
-                            print(1)
-                            guard !self.isDraggingHandled else {
-                                return
-                            }
-                            guard abs(value.location.y - value.startLocation.y) < buttonSize else {
-                                return
-                            }
-                            self.isDraggingHandled = true
-                            self.onDelete()
-                        })
-                        .onEnded({ _ in
-                            self.isDraggingHandled = false
-                        })                     
-            )
-            ControlPanel(clickCallback: onControlPanelClick).padding(.bottom)
-            Spacer()
+        ZStack {
+            Color.black.edgesIgnoringSafeArea(.all)
+            VStack(alignment: .trailing, spacing: 30.0){
+                Spacer()
+                Spacer()
+                DisplayArea(eventCallback: onDisplayAreaClick, currentDisplay: $currentDisplay, isPresentingPopover: $isPresentingPopover)
+                    .frame(maxWidth: controlPanelWidth, alignment: .trailing)
+                    .padding(.trailing)
+                    .frame(maxWidth: controlPanelWidth)
+                    .contentShape(Rectangle())
+                    .gesture(
+                        DragGesture(minimumDistance: buttonSize)
+                            .onChanged({ value in
+                                print(1)
+                                guard !self.isDraggingHandled else {
+                                    return
+                                }
+                                guard abs(value.location.y - value.startLocation.y) < buttonSize else {
+                                    return
+                                }
+                                self.isDraggingHandled = true
+                                self.onDelete()
+                            })
+                            .onEnded({ _ in
+                                self.isDraggingHandled = false
+                            })
+                )
+                ControlPanel(clickCallback: onControlPanelClick).padding(.bottom)
+                Spacer()
+            }
         }
     }
 }

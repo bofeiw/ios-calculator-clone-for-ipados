@@ -40,6 +40,7 @@ struct DisplayArea: View {
     
     var body: some View {
         Text(currentDisplay)
+            .foregroundColor(Color.white)
             .font(.system(size: fontSize))
             .contextMenu {
                 Button(action: {

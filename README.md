@@ -1,4 +1,6 @@
-#  An clone of the built-in iOS Calculator APP for iPadOS, using SwiftUI
+![preview](Designs/1024.png)
+
+#  A clone of the built-in iOS Calculator APP for iPadOS, using SwiftUI
 
 Yes, it looks exactly the same as the iOS built-in Calculator
 
@@ -35,11 +37,13 @@ Feel free to create an issue to discuss potential improvements, bugs, or feedbac
 Feel free to create a PR if that's the best way to solve a problem! And then add your name to the list of contributors.  
 
 - [@bofeiw](http://github.com/bofeiw) Creator
+- [@ayfallen](http://github.com/ayfallen) Contributor
 
 ## TODO
 
-- Support light color scheme
 - Add advanced calculation as the landscape mode of the iOS Calculator
 - Add App Widget
 - Add Siri support
 - Add home screen popover
+- Follow system color scheme
+- Add iPadOS cursor support
